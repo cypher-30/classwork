@@ -1,89 +1,97 @@
 class TreeNode:
-    def __init__(self, value, left=None, right=None):
-        self.value = value
+
+    def _init_(self, value):
+
         self.left = None
         self.right = None
+        self.value = value
 
     def insert(self, key):
+        #condition to either go to left or right
         if key < self.value:
-
             if self.left is None:
                 self.left = TreeNode(key)
             else:
                 self.left.insert(key)
-        elif key> self.value:
 
-            if key <self.right is None:
+        elif key > self.value:
+            if self.right is None:
                 self.right = TreeNode(key)
             else:
                 self.right.insert(key)
 
 
+    def find(self, key):
 
-    def final(self):
-        pass
+        if key < self.value:
 
-    def preorder_traversal(self, root):
-        if self.left:
-            self.left.preorder_traversal(root)
-        print(self.value)
-
-        if self.right:
-            self.right.preorder_traversal(root)
-
-    def inorder_traversal(self, root):
-        if self.left:
-            self.left.inorder_traversal(root)
-
-        print(self.value)
-
-        def find(self, key):
-            if key < self.value:
-                if self.left is None:
-                    return False
-                else:
-                    return self.left.find(key)
-            elif key > self.value:
-                if self.right is None:
-                    return False
-                else:
-                    return self.right.find(key)
+            if self.left is None:
+                return False
             else:
-                return True
+                return self.left.find(key)
 
-    def postorder_traversal(self, root):
-        if self.left:
-            self.left.postorder_traversal(root)
+        elif key > self.value:
 
-        if self.right:
-            self.right.postorder_traversal(root)
+            if self.right is None:
+                return False
+            else:
+                return self.right.find(key)
+
+        else:
+            return True
+
+
+
+
+
+    def preorder_traversal(self):
 
         print(self.value)
 
-if __name__ == "__main__":
+        if self.left:
+            self.left.preorder_traversal()
 
-    tree = TreeNode("p")
+        if self.right:
+            self.right.preorder_traversal()
 
-    tree.insert("11")
-    tree.insert("12")
-    tree.insert("13")
-    tree.insert("14")
-    tree.insert("14")
-    tree.insert("15")
-    tree.insert("16")
-    tree.insert("17")
-    tree.insert("18")
-    tree.insert("19")
-    tree.insert("20")
+    def inorder_traversal(self):
+        #for the second time
+        if self.left:
+            self.left.inorder_traversal()
 
+        print(self.value)
 
-    print("\n Preorder Traversal")
-    tree.preorder_traversal(tree)
-
-    print("\n Inorder Traversal")
-    tree.inorder_traversal(tree)
-
-    print("\n Postorder Traversal")
-    tree.postorder_traversal(tree)
+        if self.right:
+            self.right.inorder_traversal()
 
 
+    def postorder_traversal(self):
+        if self.left:
+            self.left.postorder_traversal()
+
+        if self.right:
+            self.right.postorder_traversal()
+
+        print(self.value)
+
+
+if __name__ == '__main__':
+
+
+    tree = TreeNode(10)
+
+    tree.insert(5)
+    tree.insert(3)
+    tree.insert(4)
+    tree.insert(11)
+    tree.insert(12)
+    tree.insert(13)
+
+
+
+    print("\nPreorder Traversal:")
+    tree.preorder_traversal()
+    print("\nPostorder Traversal:")
+    tree.postorder_traversal()
+    print("\nInorder Traversal:")
+    tree.inorder_traversal()
